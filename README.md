@@ -64,3 +64,6 @@ You get to decide how the data should be formatted in your file but remember it 
 - Remember that when you press play in CLion the file executed is not in the project folder but in the path listed at the top of the `Run` console. If you want you can run this from windows command console or create run configurations in CLion for each set of arguments you want to test.
 - You should provide useful prompts to the user when running `init` or `edit`.
 - In the event of `edit` it would be nice if the program shows the value stored currently when prompting you for a new value.
+
+##### HINTS
+- When comparing the values of argv[1] to strings you make run into some trouble. It is because argv is an array of characters and "things" in quotes are strings. To compare them use this incantation `static_cast<string>(argv[1]) == "init"` which type casts the character array to a string before comparing it against the literal "init"
