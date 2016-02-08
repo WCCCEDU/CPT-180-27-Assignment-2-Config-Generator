@@ -44,5 +44,5 @@ int main(int argc, char *argv[]) {
     string known_recipients_file;
     cout << "enter the known recipients file" << endl;
     getline(cin, known_recipients_file);
-
+outputFile.close("config.txt");
 }
