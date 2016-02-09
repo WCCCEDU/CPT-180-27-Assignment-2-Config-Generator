@@ -3,4 +3,4 @@
 [email] = bcseahawk@gmail.com
 [cypher] = thecityofchampions
 [timeoffset] = 5
-[knownfile] = knownrecipient.txt
+[knownfile] = knownrecipients.txt

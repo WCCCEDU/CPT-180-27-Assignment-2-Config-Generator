@@ -2,47 +2,88 @@
 #include <fstream>
 
 
+
 using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
 
-const string config_file = "/users/Brandon/Files_Coding_Assignment_2/config.txt";
+const string outfile = "/users/Brandon/Files_Coding_Assignment_2/config.txt";
 
 int main(int argc, char *argv[]) {
 
-    if (argc != 0)
-        cout << "opening config file" << config_file;
-    endl;
+    string argument = "";
+    string  argument_choice, argument0, argument1, argument2;
+    cout << "enter argument 0 to open file, enter 1 to output config file content, enter 2 to edit";
+    if (argc != 0) {
+        argument0 = static_cast<string>(argv[0]);
+    }
 
-    std::ofstream config_file;
-    outputFile.open("config.txt");
+    if (argument_choice == "1") {
+        argument1 = static_cast<string>(argv[1]);
+        cout << "you are now entering the init stage";
+    }
+    std::ofstream outfile;
+    outfile.open("config.txt");
 
-    //I am trying compare it to the config and output false if user enters it incorrectly
-    string first_name;
-    cout << "enter your first name" << endl;
-    getline(cin, first_name);
+    string test_value;
+    cout << "enter your first name:" << endl;
+    std::getline(cin, test_value);
 
+    //if the user entered something incorrect
+    while (test_value == "") {
+        cout << "I'm sorry, we have come across an error. Please re-enter your first name: " << endl;
+        std::getline(cin, test_value);
+    }
+    std::outfile << "[firstname]=" << test_value << endl;
+    test_value = "";
 
-    string last_name;
     cout << "enter your last name" << endl;
-    getline(cin, last_name);
+    getline(cin, test_value);
+    while (test_value == "") {
+        cout << "I'm sorry, we have come across an error. Please re-enter your last name: " << endl;
+        std::getline(cin, test_value);
+    }
+    std::outfile << "[lastname]=" << test_value << endl;
+    test_value = "";
 
-    string email_address;
     cout << "enter your email address" << endl;
-    getline(cin, email_address);
+    std::getline(cin, test_value);
+    while (test_value == "") {
+        cout << "I'm sorry, we have come across an error. Please re-enter your email address: " << endl;
+        std::getline(cin, test_value);
+    }
+    std::outfile << "[email]=" << test_value << endl;
+    test_value = "";
 
-    string cypher_passcode;
-    cout << "enter your cypher" << endl;
-    getline(cin, cypher_passcode);
+    cout << "please enter your unique cypher: " << endl;
+    std::getline(cin, test_value);
+    while (test_value == "") {
+        cout << "I'm sorry, we have come across an error. Please re-enter your unique cypher: " << endl;
+        std::getline(cin, test_value);
+    }
+    std::outfile << "[cypher]=" << test_value << endl;
+    test_value = "";
 
-    string time_offset;
-    cout << "enter your time offset" << endl;
-    getline(cin, time_offset);
+    cout << "please enter your time offset: " << endl;
+    std::getline(cin, test_value);
+    while (test_value == "") {
+        cout << "I'm sorry, we have come across an error. Please re-enter your time offset: " << endl;
+        std::getline(cin, test_value);
+    }
+    std::outfile << "[timeoffset]=" << test_value << endl;
+    test_value = "";
 
+    cout << "please enter the known recipients file: " << endl;
+    if (test_value == "") {
+        outfile << "[knownfile] = knownrecipients.txt";
+    } else {
+        outfile << "[knownrecipient]=" << test_value << endl;
+    }
+    outfile.close();
+}else{(argument2)
+argument2 = static_cast<string>(argv[2]);
+cout << "you are now entering the edit stage";
 
-    string known_recipients_file;
-    cout << "enter the known recipients file" << endl;
-    getline(cin, known_recipients_file);
-outputFile.close("config.txt");
+  return 0;
 }
