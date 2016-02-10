@@ -9,39 +9,51 @@ using std::endl;
 using std::string;
 
 const string CONFIG_FILE_PATH = "/users/outla/Documents/WCCC/Semester 4/CPT-180/Assignment2/app.cfg";
-const string blank = "";
+const string BLANK = "";
 
 
 void init() {
 
     string name;
-    do{ cout << "Please Enter Your Name (First and Last)" << endl;
-    getline(cin, name);
-    } while( name == blank);
+    if(name == BLANK){
+        cout << "Please Enter Your Name (First and Last)" << endl;
+        getline(cin, name);
+    }else{
+        cout << "You Must Enter a Name" << endl;
+    }
 
     string email;
-    do{
+    if(email == BLANK){
         cout << " Please Enter Your Email Address" << endl;
         getline(cin, email);
-    }while( email == blank);
+    }else{
+        cout << "You Must Enter an Email Address" << endl;
+    }
 
     string cypher;
-    do{
+    if(cypher == BLANK){
         cout << "Please Enter Your Unique Cypher" << endl;
         getline(cin, cypher);
-    }while(cypher == blank);
+    }else{
+        cout << "You Must Enter a Cypher" << endl;
+    }
 
     string timezone_offset;
-    do{
-        cout << "Please Enter Your Timezone Offset" << endl;
+    if(timezone_offset == BLANK){
+        cout << "Please Enter Your Timezone Offset)" << endl;
         getline(cin, timezone_offset);
-    }while(timezone_offset == blank);
+    }else{
+        cout << "You Must Enter an Offset" << endl;
+    }
 
     string file_path;
-    do{
-        cout << "Please Enter the Recipient's File Path " << endl;
+    if(file_path == BLANK){
+        cout << "Please Enter the Recipient's File Path" << endl;
         getline(cin, file_path);
-    }while (file_path == blank);
+    }else{
+        cout << "You Must Enter a File Path" << endl;
+    }
+
 
     std::ofstream init_output_file;
     init_output_file.open(file_path);
@@ -62,10 +74,10 @@ void edit(){
 
 
     std::ifstream edited_file;
-    string name_edit = blank;
-    string email_edit = blank;
-    string cypher_edit = blank;
-    string timezone_edit = blank;
+    string name_edit = BLANK;
+    string email_edit = BLANK;
+    string cypher_edit = BLANK;
+    string timezone_edit = BLANK;
     edited_file.open(edit_path);
 
     if (edited_file) {
@@ -75,7 +87,35 @@ void edit(){
         edited_file >> cypher_edit;
         edited_file >> timezone_edit;
 
+        if(name_edit == BLANK){
+            cout << "Please Enter Your Name (First and Last)" << endl;
+            getline(cin, name_edit);
+        }else{
+            cout << "You Must Enter a Name" << endl;
+        }
+
+        if(email_edit == BLANK){
+            cout << " Please Enter Your Email Address" << endl;
+            getline(cin, email_edit);
+        }else{
+            cout << "You Must Enter an Email Address" << endl;
+        }
+
+        if(cypher_edit == BLANK){
+            cout << "Please Enter Your Unique Cypher" << endl;
+            getline(cin, cypher_edit);
+        }else{
+            cout << "You Must Enter a Cypher" << endl;
+        }
+
+        if(timezone_edit == BLANK){
+            cout << "Please Enter Your Timezone Offset)" << endl;
+            getline(cin, timezone_edit);
+        }else{
+            cout << "You Must Enter an Offset" << endl;
+        }
         edited_file.close();
+
     } else{
           file= false;
         cout << "No File Found" << endl;
@@ -84,10 +124,6 @@ void edit(){
         std::ofstream output_edited_file;
         output_edited_file.close();
 
-        do{ cout << "Please Enter Your Name (First and Last)" << endl;
-            getline(cin, name_edit);
-        } while( name_edit == blank);
-
         output_edited_file << name_edit << endl;
         output_edited_file << email_edit << endl;
         output_edited_file << cypher_edit << endl;
@@ -95,7 +131,7 @@ void edit(){
 
         output_edited_file.close();
     }else{
-        cout << " PLease Find the Correct File Path" << endl;
+        cout << " Please Find the Correct File Path" << endl;
     }
     }
 
