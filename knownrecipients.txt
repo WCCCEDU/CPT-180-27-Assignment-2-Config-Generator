@@ -1,4 +1,8 @@
-josh young
-joshuayoung101
-pass123
+[Username]
+Josh Young
+[Email]
+joshuayoung101@gmail.com
+[Password]
+pass12345
+[Timezone]
 5:00
