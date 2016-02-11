@@ -113,21 +113,16 @@ void edit(){
 
 int main(int argc, char *argv[]) {
 
-    int choice;
-    cout << "Enter 1 to initialize config file or 2 to edit:" << endl;
-    cin >> choice;
+    cout << "Please enter 'init' to initialize config file or 'edit' to edit the name in the file:" << endl;
 
-    switch (choice) {
-        case 1:
-            init();
-            break;
-
-        case 2:
-            edit();
-            break;
-
-        default:
-            cout << "You did not enter a valid number." << endl;
+    if (static_cast<string>(argv[1]) == "init") {
+        cout << "Preparing config file initialization." << endl;
+        init();
     }
+    else if (static_cast<string>(argv[2]) == "edit") {
+        cout << "Preparing to edit config file." << endl;
+        edit();
+    }
+
     return 0;
 }
