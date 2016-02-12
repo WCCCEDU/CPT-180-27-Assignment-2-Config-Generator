@@ -15,72 +15,51 @@ int main(int argc, char *argv[]) {
     if (static_cast<string>(argv[1]) == "init") {
         cout << "init" << endl;
     }
+    void("init");
+    std::ofstream outfile;
+    outfile.open("config.txt");
 
-         std::ofstream outfile;
-        outfile.open("config.txt");
-     if (outfile.is_open())
-        {
-        outfile << "File successfully open";
-        outfile.close();
-        }
-    else
-    {
-        cout << "Error opening file";
-    }
-        string first_name;
-        cout << "enter your first name:" << endl;
-        getline(cin, first_name);
-         if (first_name == "") {
-        cout << first_name << endl;
-        }
-        string last_name;
-        cout << "enter your last name" << endl;
+
+    string first_name;
+    string last_name;
+    string email_address;
+    string cypher_code;
+    string time_offset;
+    string known_recipients_file;
+
+    cout << "enter your first name: " << endl;
+    getline(cin, first_name);
+    if (first_name.empty()) {
+        cout << "ERROR: Please re-enter your first name" << endl;
+    } else {
+        cout << "enter your last name: " << endl;
         getline(cin, last_name);
-        while (last_name == "") {
-        cout << "I'm sorry, we have come across an error. Please re-enter your last name: " << endl;
-        getline(cin, last_name);
-     }
-
-        string email_address;
-        cout << "enter your email address" << endl;
-        getline(cin, email_address);
-        while (last_name == "") {
-        cout << "I'm sorry, we have come across an error. Please re-enter your email address: " << endl;
-        getline(cin, email_address);
-        }
-        cout << "[email]=" << email_address << endl;
-
-     string cypher_code;
-        cout << "please enter your unique cypher: " << endl;
-        std::getline(cin, cypher_code);
-     while (cypher_code == "") {
-        cout << "I'm sorry, we have come across an error. Please re-enter your unique cypher: " << endl;
-        getline(cin, cypher_code);
-        }
-        outfile << "[cypher]=" << cypher_code << endl;
-        cypher_code = "";
-
-     string time_offset;
-        cout << "please enter your time offset: " << endl;
-        getline(cin, time_offset);
-        while (time_offset == "") {
-        cout << "I'm sorry, we have come across an error. Please re-enter your time offset: " << endl;
-        getline(cin, time_offset);
-     }
-     outfile << "[timeoffset]=" << time_offset << endl;
-
-        string known_recipients_file;
-        cout << "please enter the known recipients file: " << endl;
-     if (known_recipients_file == "") {
-        outfile << "[knownfile] = knownrecipients.txt";
+        if (last_name.empty()) {
+            cout << "ERROR: Please re-enter your last name: " << endl;
         } else {
-        outfile << "[knownrecipient]=" << known_recipients_file << endl;
+            cout << "enter your email address: " << endl;
+            getline(cin, email_address);
+            if (email_address.empty()) {
+                cout << "ERROR: Please re-enter your email address: " << endl;
+            } else {
+                cout << "please enter your unique cypher: " << endl;
+                getline(cin, cypher_code);
+                if (cypher_code.empty()) {
+                    cout << "ERROR: Please re-enter your unique cypher: " << endl;
+                } else {
+                    cout << "please enter your time offset: " << endl;
+                    getline(cin, time_offset);
+                    if (time_offset.empty()) {
+                        cout << "ERROR: Please re-enter your time offset: " << endl;
+                    } else {
+                        cout << "known_recipients_file = knownrecipients.txt" << endl;
+                    }
+                    outfile.close();
+                    return 0;
+                }
+
+            }
+
+        }
     }
-    outfile.close();
-    return 0;
 }
-
-
-
-
-
