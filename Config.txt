@@ -1,10 +1,10 @@
 [Name]
-	Samantha Shurie
+	Sam Shurie
 [E-mail]
 	s_shurie@yahoo.com
 [Password]
-	password
+	pass
 [Timezone Offset]
-	-5
+	-5:00
 [File Path]
 	C:\Users\Samantha\ClionProjects\Assignment2-Config-Files\Config.txt
