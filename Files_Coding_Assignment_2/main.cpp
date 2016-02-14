@@ -11,55 +11,106 @@ const string CONFIG_FILE = "C:/Users/Brandon/Documents/config.txt";
 
 int main(int argc, char *argv[]) {
 
-    cout << argc;
-    if (static_cast<string>(argv[1]) == "init") {
-        cout << "init" << endl;
-    }
     void("init");
-    std::ofstream outfile;
+    {
+        cout << argc;
+        if (static_cast<string>(argv[1]) == "init") {
+            cout << "init" << endl;
+        }
+
+
+        std::ofstream outfile;
+        outfile.open("config.txt");
+
+        //init user enter first name
+        string first_name = "";
+        do {
+            cout << "enter your first name:" << endl;
+            getline(cin, first_name);
+        } while (first_name == "");
+
+        //init user enter last name
+        string last_name;
+        do {
+            cout << "enter your last name" << endl;
+            getline(cin, last_name);
+        } while (last_name == "");
+
+        //init user enter email address
+        string email_address = "";
+        do {
+            cout << "enter your email address" << endl;
+            std::getline(cin, email_address);
+        } while (email_address == "");
+
+        //init user enter cypher
+        string cypher_passcode;
+        do {
+            cout << "enter your cypher: " << endl;
+            std::getline(cin, cypher_passcode);
+        } while (cypher_passcode == "");
+
+        //init user enter time offset
+        string time_offset = "";
+        do {
+            cout << "enter your time offset: " << endl;
+            std::getline(cin, time_offset);
+        } while (time_offset == "");
+
+        //init user enter known recipients file
+        string known_recipients_file = "";
+        do {
+            cout << "enter known recipients file: " << endl;
+            getline(cin, known_recipients_file);
+        } while (known_recipients_file == "");
+        cout << "known_recipients_file= knownrecipients.txt" << endl;
+
+        outfile.close();
+    }
+    if (static_cast<string>(argv[2]) == "edit") {
+        cout << "edit" << endl;
+    }
+
+    std::ifstream infile;
+    infile.open("config.txt");
+    cout << "Reading data from the file.\n";
+
+
+    string edit_first_name;
+    string edit_last_name;
+    string edit_email_address;
+    string edit_cypher_passcode;
+    string edit_time_offset;
+
+    infile >> edit_first_name;
+    infile >> edit_last_name;
+    infile >> edit_email_address;
+    infile >> edit_cypher_passcode;
+    infile >> edit_time_offset;
+
+    string new_email_address;
+    getline(cin, new_email_address);
+    cout << "enter new email address for the file: ";
+    while (new_email_address == "") {
+        cout << "enter new email address for the file: ";
+        getline(cin, new_email_address);
+    }
+
     outfile.open("config.txt");
 
+    outfile << edit_first_name << endl;
+    outfile << edit_last_name << endl;
+    outfile << edit_email_address << endl;
+    outfile << edit_cypher_passcode << endl;
+    outfile << edit_time_offset << endl;
+    cout << "The information was saved to the file .\n" << endl;
 
-    string first_name;
-    string last_name;
-    string email_address;
-    string cypher_code;
-    string time_offset;
-    string known_recipients_file;
+    outfile.close();
+    infile.close();
 
-    cout << "enter your first name: " << endl;
-    getline(cin, first_name);
-    if (first_name.empty()) {
-        cout << "ERROR: Please re-enter your first name" << endl;
-    } else {
-        cout << "enter your last name: " << endl;
-        getline(cin, last_name);
-        if (last_name.empty()) {
-            cout << "ERROR: Please re-enter your last name: " << endl;
-        } else {
-            cout << "enter your email address: " << endl;
-            getline(cin, email_address);
-            if (email_address.empty()) {
-                cout << "ERROR: Please re-enter your email address: " << endl;
-            } else {
-                cout << "please enter your unique cypher: " << endl;
-                getline(cin, cypher_code);
-                if (cypher_code.empty()) {
-                    cout << "ERROR: Please re-enter your unique cypher: " << endl;
-                } else {
-                    cout << "please enter your time offset: " << endl;
-                    getline(cin, time_offset);
-                    if (time_offset.empty()) {
-                        cout << "ERROR: Please re-enter your time offset: " << endl;
-                    } else {
-                        cout << "known_recipients_file = knownrecipients.txt" << endl;
-                    }
-                    outfile.close();
-                    return 0;
-                }
 
-            }
-
-        }
-    }
+    return 0;
 }
+
+
+
