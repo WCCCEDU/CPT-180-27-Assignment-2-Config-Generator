@@ -33,13 +33,14 @@ int main(int argc, char *argv[]) {
 
         config_file.open(CONFIG_FILE_PATH);
 
-        // array to hold prompts
+        // array to hold prompts, setting name and default values
         const int ARRAY_SIZE = 5;
         const string SETTING_NAME[ARRAY_SIZE] = {"name", "email", "cypher", "timezone", "knownrecipients"};
         const string SETTING_PROMPT[ARRAY_SIZE] = {"Enter your name (first and last):", "Enter your email address:",
                                                    "Enter your unique cypher (password):",
                                                    "Enter your timezone-offset (example -5:00):",
                                                    "Enter path to knownrecipients file (hit enter for the default knownrecipients.txt):"};
+        const string SETTING_DEFAULT[ARRAY_SIZE] = {"", "", "", "", "./knownrecipients.txt"};
 
         string temp_value = "";
         for (int x = 0; x < ARRAY_SIZE; x++) {
@@ -48,8 +49,9 @@ int main(int argc, char *argv[]) {
             cout << SETTING_PROMPT[x] << endl;
             std::getline(cin, temp_value);
 
-            if (SETTING_NAME[x] == "knownrecipients" && temp_value == "") {
-                temp_value = "./knownrecipients.txt";
+            // If the default value is not blank then use the default value
+            if (SETTING_DEFAULT[x] != "" && temp_value == "") {
+                temp_value = SETTING_DEFAULT[x];
             }
             while (temp_value == "") {
                 cout << "Error, please do not leave the " << SETTING_NAME[x] << " value blank." << endl;
