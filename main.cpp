@@ -34,19 +34,19 @@ void init() {
     }
   }
 
-    // create/open file and print headers and user input
-    ofstream config(FILE_PATH);
-    if(config){
-      for(int i = 0; i < SIZE; i++){
-        config << HEADERS[i] + "\n\t" + results[i] + "\n";
-      }
-    }else{
-      cout << "Error in file creation.";
+  // create/open file and print headers and user input
+  ofstream config(FILE_PATH);
+  if(config){
+    for(int i = 0; i < SIZE; i++){
+      config << HEADERS[i] + "\n\t" + results[i] + "\n";
     }
+  }else{
+    cout << "Error in file creation.";
+  }
 
-    // make sure to close the file!
-    config.close();
-    cout << "\n\tFile Created!";
+  // make sure to close the file!
+  config.close();
+  cout << "\n\tFile Created!";
 }
 
 void edit(string field){
@@ -78,16 +78,16 @@ void edit(string field){
     if(field == "name"){
       getline(cin, values[0]);
       values[0] = "\t" + values[0];
-    } else if(field == "email"){
+    }else if(field == "email"){
       getline(cin,values[1]);
       values[1] = "\t" + values[1];
-    } else if(field == "password"){
+    }else if(field == "password"){
       getline(cin, values[2]);
       values[2] = "\t" + values[2];
-    } else if(field == "timezone"){
+    }else if(field == "timezone"){
       getline(cin, values[3]);
       values[3] = "\t" + values[3];
-    } else {
+    }else{
       getline(cin, values[4]);
       values[4] = "\t" + values[4];
     }
@@ -97,21 +97,24 @@ void edit(string field){
     }
     cout << "\n\tFile Updated!";
     config.close();
-  } else {
+  }else{
     cout << "Error in locating file.";
   }
 }
 
 int main(int argc, char *argv[]) {
   // initialize variables with given arguments
-  string arg1 =  static_cast<string>(argv[1]);
+  string arg1 = "";
+  if(argc > 1){
+    arg1 = static_cast<string>(argv[1]);
+  }
   string arg2 = "";
   if(argc == 3){
     arg2 = static_cast<string>(argv[2]);
   }
 
   if(arg1 == "init"){
-      init();
+    init();
   }else if(arg1 == "edit"){
     if(arg2 == "name" || arg2 == "email" || arg2 == "password" || arg2 == "timezone" || arg2 == "filepath") {
         edit(arg2);
@@ -126,20 +129,21 @@ int main(int argc, char *argv[]) {
   }else{
     do{
       cout << "You did not provide valid arguments. Enter \"init\" to create a new config file or \"edit\""
-                << "to change an existing one: ";
+                << " to change an existing one: ";
       cin >> arg1;
     }while(arg1 != "init" && arg1 != "edit");
     if(arg1 == "init"){
       init();
     }else{
       cout << "Enter one of the following fields to edit its value: \"name\", \"email\", \"password\","
-                << "\"timezone\", \"filepath\"";
+                << " \"timezone\", \"filepath\"";
       cin >> arg2;
       while(arg2 != "name" && arg2 != "email" && arg2 != "password" && arg2 != "timezone" && arg2 != "filepath") {
-        cout << "You did not enter an acceptable argument. Please enter one of the following: \"name\", \"email\","
-                << "\"password\", \"timezone\", \"filepath\"";
+        cout << "You did not enter an acceptable argument. Please enter one of the following: \"name\", \"email\", "
+                << "\"password\", \"timezone\",\n\"filepath\": ";
         cin >> arg2;
       }
+      edit(arg2);
     }
   }
   return 0;
