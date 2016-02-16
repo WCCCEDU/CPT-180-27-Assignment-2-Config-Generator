@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main(int argc, char* argv[] ) {
+
+    //write/open the initial txt file for configuration
+    std::ofstream file("config.txt");
+    file.open("config.txt");
+
+    if (argument1 == "init")
+
+    //receive user input
+       cout << "What is your full name? " << endl;
+       cin >> name;
+       cout << "What is your email address? " << endl;
+       cin >> email;
+       cout << "what is your password? " << endl;
+       cin >> password;
+       cout << "What timezone do you live in?" << endl;
+       cin >> timezone;
+
+    //write answers to config file. (Hopefully!)
+    file << name << endl;
+    file << email << endl;
+    file << password << endl;
+    file << timezone << endl;
+
+    //close file
+    file.close();
+    cout << "File closed.";
+
+    if (argument2 == "edit")
+
+    //prompt the user to edit the file
+    cout << "Please indicate the field to edit: " << endl;
+    cin >> variable; 
+}
+    return 0;
