@@ -2,8 +2,7 @@
 #include <fstream>
 
 // Location of config txt file
-const std::string CONFIG_FILE_PATH = "/Users/naomibrown/assignments/Assignment2/MyConfigFile.txt";
-const std::string DEFAULT_FILE_PATH = "/Users/naomibrown/assignments/Assignment2";
+const std::string DEFAULT_FILE_PATH = "/Users/naomibrown/assignments/Assignment2/MyConfigFile.txt";
 
 int main(int argc, char *argv[]) {
     // Before doing any processing, check to see if there are sufficient arguments entered
@@ -67,7 +66,7 @@ int main(int argc, char *argv[]) {
         // Open and Write initialize data to file
         std::ofstream outputFile;
 
-        outputFile.open(CONFIG_FILE_PATH);
+        outputFile.open(knownrecipientsFilePath);
 
         std::cout << "Writing initialize data to file.\n";
         outputFile << firstName << std::endl;
@@ -107,7 +106,7 @@ int main(int argc, char *argv[]) {
         // Open config file and read contents
 
         std::ifstream inputFile;
-        inputFile.open(CONFIG_FILE_PATH);
+        inputFile.open(knownrecipientsFilePath);
         inputFile >> firstName;
         inputFile >> lastName;
         inputFile >> emailAddress;
@@ -173,7 +172,7 @@ int main(int argc, char *argv[]) {
 
         std::ofstream outputFile;
 
-        outputFile.open(CONFIG_FILE_PATH);
+        outputFile.open(knownrecipientsFilePath);
 
         std::cout << "Writing edited data to file.\n";
         outputFile << firstName << std::endl;
