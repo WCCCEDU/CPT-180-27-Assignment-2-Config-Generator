@@ -1,12 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stdio.h>
 
 
 int main(int argc, char *argv[]) {
-    // std::ofsteam configfile;
-   // configfile.open("known_recipients.txt");
+
 
     //std::string argument1 = "";
 
@@ -15,46 +13,64 @@ int main(int argc, char *argv[]) {
 //Location
 
 //if(argument = init)
+    std::ofstream myfile;
+    myfile.open("known_recipients.txt");
+
     std::string first_and_last ="", email = "", cypher = "", timezone, path ="";
 
     std::cout << "Enter your first and last name, please" << std::endl;
     std::getline(std::cin, first_and_last);
 
-        while(first_and_last == ""){
+    while(first_and_last == ""){
         std::cout << "Please enter your first and last name to continue" << std::endl;
+        std::getline(std::cin, first_and_last);
         }
 
     std::cout << "Enter your email address, please" << std::endl;
     std::getline(std::cin, email);
 
-        while(email == "") {
-            std::cout << "Please enter your email to continue" << std::endl;
-        }
+    while(email == "") {
+        std::cout << "Please enter your email to continue" << std::endl;
+        std::getline(std::cin, email);
+    }
 
     std::cout << "Enter your unique cypher, please" << std::endl;
     std::getline(std::cin, cypher);
 
-        while(cypher == "") {
-            std::cout << "Please enter your unique cypher to continue" << std::endl;
-        }
+    while(cypher == "") {
+        std::cout << "Please enter your unique cypher to continue" << std::endl;
+        std::getline(std::cin, cypher);
+    }
 
     std::cout << "Enter your timezone offset, please" <<std::endl;
     std::getline(std::cin, timezone);
 
-        while(timezone == ""){
+    while(timezone == ""){
         std::cout << "Please enter your timezone to continue" << std::endl;
-        }
+        std::getline(std::cin, timezone);
+    }
 
     std::cout << "Enter path to knownrecipients file, please" << std::endl;
     std::getline(std::cin, path);
 
-        while(path == "") {
-            std::cout << "Please enter knownrecipients path to continue" << std::endl;
+    while(path == "") {
+        std::cout << "Please enter knownrecipients path to continue" << std::endl;
+        std::getline(std::cin, path);
         }
 
-    //// configfile.close("known_recipients.txt");int menu_choice = 1;
+    myfile.close();
+
+    // ;int menu_choice = 1;
 
     //}
+
+    // ifstream myfile ("known_recipients.txt);
+    // if (myfile.is_open())
+   // {
+        //while ( getline (myfile, line))
+
+    //}
+    //else cout << Unable to open file, please try something different. << std::endl;
 
     //else if (argument = 'edit')
 
@@ -68,8 +84,6 @@ int main(int argc, char *argv[]) {
            // break;
         //default:
            // menu_choice =1;
-
-
 
 return(0);
 }
