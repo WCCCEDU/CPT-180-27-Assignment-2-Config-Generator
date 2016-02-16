@@ -36,5 +36,5 @@ int main(int argc, char* argv[] ) {
     //prompt the user to edit the file
     cout << "Please indicate the field to edit: " << endl;
     cin >> variable; 
-
+}
     return 0;
