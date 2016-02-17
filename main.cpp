@@ -17,10 +17,7 @@ int main(int argc, char *argv[]) {
     string cypher = "";
     string timezone_offset = "";
     string file_path = "";
-    string init_edit = "";
 
-    cout << "Enter 'init' or 'edit': ";
-    cin >> init_edit;
 
     if(static_cast<string>(argv[1]) == "init")
     {
