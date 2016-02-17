@@ -7,18 +7,14 @@ const std::string EDIT = "C:/Users/Tim/ClionProjects/Assignment_2_File_Generator
 
 int main(int argc, char *argv[])
 {
-    std::string argument1 = "";
-    if (argv[1] != 0)
-    {
-        argument1 = static_cast<std::string>(argv[1]);
-    }
+    std::cout << "Please type either init or edit to continue" << std::endl;
+    if (static_cast<std::string>(argv[1]) == "init")
 
-    if(argument1 = "init")
     {
     std::ofstream myfile;
     myfile.open(CONFIG);
 
-    std::string first_and_last = "", email = "", cypher = "", timezone, path = "";
+    std::string first_and_last = "", email = "", cypher = "", timezone;
 
     std::cout << "Enter your first and last name, please" << std::endl;
     std::getline(std::cin, first_and_last);
@@ -61,29 +57,34 @@ int main(int argc, char *argv[])
     }
     myfile << timezone << std::endl;
 
-    std::cout << "Enter path to knownrecipients file, please" << std::endl;
-    std::getline(std::cin, path);
 
-    while (path == "")
-    {
-        std::cout << "Please enter knownrecipients path to continue" << std::endl;
-        std::getline(std::cin, path);
-    }
-
-    myfile << path << std::endl;
 
     myfile.close();
 
     }
-    else if (argument1 = "edit")
+    else if (static_cast<std::string>(argv[2])= "edit")
     // Get Value from Config, and Edit
     {
+
+
+
         std::ifstream myfile;
         myfile.open(CONFIG);
 
-        myfile >> first_and_last >> email >> cypher >> timezone >> path >> std::endl;
+        myfile << first_and_last << email << cypher << timezone << path << std::endl;
 
         myfile.close();
+
+        std::string path = "";
+        std::cout << "Enter path to knownrecipients file, please" << std::endl;
+        std::getline(std::cin, path);
+
+        while (path == "")
+        {
+            std::cout << "Please enter knownrecipients path to continue" << std::endl;
+            std::getline(std::cin, path);
+        }
+
 
         std::string name_edit = "", email_edit = "", cypher_edit = "", timezone_edit, path_edit = "";
 
@@ -132,18 +133,17 @@ int main(int argc, char *argv[])
             std::cout << "Please enter the new knownrecipients path to continue" << std::endl;
             std::getline(std::cin, path);
         }
+        // editfile << all the new stuff
 
 
         editfile.close();
     }
             // ifstream myfile ("known_recipients.txt);
-            // if (myfile.is_open())
+            // if (myfile.is_oerwpen())
             // {
             //while ( getline (myfile, line))
 
             //}
-
-
 
     else
     {
