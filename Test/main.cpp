@@ -1,35 +1,38 @@
 #include <iostream>
 #include <fstream>
 
-
+std::string name = "",email = "",passcode = "",time_zone = "",file_path = "";
  //input = std::cin , output = std::cout; Can this be done?
-void init(){
-
-    std::string name = "",email = "",passcode = "",time_zone = "",file_path = "";
-    do {
-        std::cout<< "Enter your Name:\n";
-        getline (std::cin, name);
-    } while (name == "");
-
-    do {
+void users_name()
+ {
+     do {
+         std::cout<< "Enter your Name:\n";
+         getline (std::cin, name);
+     } while (name == "");
+ }
+void email_address(){do {
         std::cout<< "Enter your Email:\n";
         getline (std::cin, email);
     } while (email == "");
-
-
-    do {
+}
+void password(){do {
         std::cout<< "Enter a unique Passcode:\n";
         getline (std::cin, passcode);
-    } while (passcode == "");
-
-
+    } while (passcode == "");}
+void timezone()
+{
     do {
         std::cout<< "Enter your Time Zone:\n";
         getline (std::cin, time_zone);
     } while (time_zone == "");
+}
+void create(){
+    users_name();
+    email_address();
+    password();
+    timezone();
 
-
-     std::cout << "Enter path to Known Recipients file:\n";
+    std::cout << "Enter path to Known Recipients file:\n";
     getline (std::cin, file_path);
     if (file_path == "") {
         file_path = "knownrecipients.txt";
@@ -46,7 +49,7 @@ void init(){
     init_outputf.close();
 }
 
-void edit(){
+void reconfigure(){
     std::string edit_file_path, edit_name = "",edit_email = "",edit_passcode = "",edit_timezone = "";
     std::cout << "Enter path to Known Recipients file:\n";
     std::cin >> edit_file_path;
@@ -92,22 +95,16 @@ void edit(){
 }
 
 int main(int argc, char *argv[]) {
-
-    char choice;
-    std::cout << "Enter A to Create the config file or B to edit:\n";
-    std::cin >> choice;
-
-    switch (choice) {
-        case 'A':
-            init();
-            break;
-
-        case 'B':
-            edit();
-            break;
-
-        default:
-            std::cout << "You did not enter A or B !!.\n";
-    }
+    std::cout << "Please enter 'create' to initialize config file or 'reconfigure' to edit the file:\n";
+   if (static_cast<std::string>(argv[1]) == "create")
+   {
+       std::cout << "Prepping the creation of the Config File.\n";
+       create();
+   }
+   else if (static_cast<std::string>(argv[2]) == "reconfigure")
+   {
+       std::cout << "Starting the Reconfiguration process.\n";
+       reconfigure();
+   }
     return 0;
-}
+    }
