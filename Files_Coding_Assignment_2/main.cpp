@@ -96,6 +96,7 @@ int main(int argc, char *argv[]) {
         getline(cin, new_email_address);
     }
 
+    std::ofstream outfile;
     outfile.open("config.txt");
 
     outfile << edit_first_name << endl;
