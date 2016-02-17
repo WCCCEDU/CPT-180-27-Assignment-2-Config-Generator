@@ -1,6 +1,6 @@
-[lastname] = 
-[firstname] = 
-[email] = 
-[cypher] = 
-[timezone] = 
-[knowrecipients] = 
+[lastname] = chishko
+[firstname] = Jonathan
+[email] = chishkoj@my.wccc.edu
+[cypher] = password
+[timezone] = -5
+[knowrecipients] = knownrecipents.txt

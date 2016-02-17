@@ -1,99 +1,156 @@
 #include <iostream>
-#include <string>
 #include <fstream>
 
 using std::cout;
 using std::endl;
 using std::string;
 using std::cin;
-using std::getline;
+using std::ofstream;
+using std::ifstream;
 
-const string CONFIG_FILE_WRITE_PATH = "/Users/Jon/Desktop/C++repos/CPT-180-27-Assignment-2-Config-Generator/config.txt";
+const string CONFIG_FILE_PATH = "/Users/Jon/Desktop/C++repos/CPT-180-27-Assignment-2-Config-Generator/config.txt";
+const string NEW_CONFIG_FILE_PATH = "/Users/Jon/Desktop/C++repos/CPT-180-27-Assignment-2-Config-Generator/Editconfig.txt";
 
-int main(int argc, char *argv[]){
-// init
-    std::ofstream outputFile;
-    outputFile.open (CONFIG_FILE_WRITE_PATH);
+void init() {
+    ofstream outputFile;
+    outputFile.open(CONFIG_FILE_PATH);
 
     string lastName;
     cout << "Enter last name:" << endl;
-    getline(cin,lastName);
-    if(lastName == "")
+    cin >> lastName;
+    while (lastName == "") {
         cout << "Re-Enter last name" << endl;
-        getline(cin,lastName);
+        cin >> lastName;
+    }
     outputFile << "[lastname] = " << lastName << endl;
 
     string firstName;
     cout << "Enter first name:" << endl;
-    getline(cin,firstName);
-    if(firstName == "")
+    cin >> firstName;
+    while (firstName == "") {
         cout << "Re-Enter first name" << endl;
-        getline(cin,firstName);
+        cin >> firstName;
+    }
     outputFile << "[firstname] = " << firstName << endl;
 
     string email;
     cout << "Enter email:" << endl;
-    getline(cin,email);
-    if(email == "")
+    cin >> email;
+    while (email == "") {
         cout << "Re-Enter email" << endl;
-        getline(cin,email);
+        cin >> email;
+    }
     outputFile << "[email] = " << email << endl;
 
     string cypher;
     cout << "Enter password:" << endl;
-    getline(cin,cypher);
-    if(cypher == "")
+    cin >> cypher;
+    while (cypher == "") {
         cout << "Re-Enter password" << endl;
-        getline(cin,cypher);
+        cin >> cypher;
+    }
     outputFile << "[cypher] = " << cypher << endl;
 
     string timeZoneDiff;
     cout << "Enter Time Zone Differential:" << endl;
-    getline(cin,timeZoneDiff);
-    if(timeZoneDiff == "")
+    cin >> timeZoneDiff;
+    while (timeZoneDiff == "") {
         cout << "Re-Enter Time Zone Differential" << endl;
-        getline(cin,timeZoneDiff);
+        cin >> timeZoneDiff;
+    }
     outputFile << "[timezone] = " << timeZoneDiff << endl;
 
     string knownRecipientsFile;
-    cout << "Enter Known recipients file path" <<endl;
-    getline(cin,knownRecipientsFile);
-    if(knownRecipientsFile == "")
-        knownRecipientsFile == "knownrecipient.txt";
-    outputFile << "[knowrecipients] = " << knownRecipientsFile << endl;
+    cout << "Enter Known recipients file path" << endl;
+    cin >> knownRecipientsFile;
+    if (knownRecipientsFile == "") {
+        outputFile << "[knowrecipients] = knownrecipient.txt" << endl;
+    } else
+        outputFile << "[knowrecipients] = " << knownRecipientsFile << endl;
 
     outputFile.close();
+}
+void edit() {
+    ifstream inputfile;
+    inputfile.open(CONFIG_FILE_PATH);
 
+    string lastName;
+    string firstName;
+    string email;
+    string cypher;
+    string timeZoneDiff;
+    string knownRecipientsFile;
 
-    //edit
+// read config file
+    inputfile >> lastName;
+    inputfile >> firstName;
+    inputfile >> email;
+    inputfile >> cypher;
+    inputfile >> timeZoneDiff;
+    inputfile >>knownRecipientsFile;
 
-    outputFile.open (CONFIG_FILE_WRITE_PATH);
-
+    inputfile.close();
+    ofstream new_outputfile;
+    new_outputfile.open(NEW_CONFIG_FILE_PATH);
 
     cout << "Edit last name:" << endl;
-    getline(cin,lastName);
-    if(lastName == "")
+    cin >> lastName;
+    while (lastName == "") {
         cout << "Re-Enter last name" << endl;
-    getline(cin,lastName);
-    outputFile << "[lastname] = " << lastName << endl;
+        cin >> lastName;
+    }
+    new_outputfile << "[lastname] = " << lastName << endl;
 
-
-    cout << "Edit first name:" << endl;
-    getline(cin,firstName);
-    if(firstName == "")
+    cout << "edit first name:" << endl;
+    cin >> firstName;
+    while (firstName == "") {
         cout << "Re-Enter first name" << endl;
-    getline(cin,firstName);
-    outputFile << "[firstname] = " << firstName << endl;
+        cin >> firstName;
+    }
+    new_outputfile << "[firstname] = " << firstName << endl;
 
 
+    cout << "edit email:" << endl;
+    cin >> email;
+    while (email == "") {
+        cout << "Re-Enter email" << endl;
+        cin >> email;
+    }
+    new_outputfile << "[email] = " << email << endl;
 
-    cout << "Edit Known recipients file path" <<endl;
-    getline(cin,knownRecipientsFile);
-    if(knownRecipientsFile == "")
-        knownRecipientsFile == "knownrecipient.txt";
-    outputFile << "[knowrecipients] = " << knownRecipientsFile << endl;
 
-    outputFile.close();
+    cout << "edit password:" << endl;
+    cin >> cypher;
+    while (cypher == "") {
+        cout << "Re-Enter password" << endl;
+        cin >> cypher;
+    }
+    new_outputfile << "[cypher] = " << cypher << endl;
 
-    return 0;
+
+    cout << "edit Time Zone Differential:" << endl;
+    cin >> timeZoneDiff;
+    while (timeZoneDiff == "") {
+        cout << "Re-Enter Time Zone Differential" << endl;
+        cin >> timeZoneDiff;
+    }
+    new_outputfile << "[timezone] = " << timeZoneDiff << endl;
+
+
+    cout << "Enter Known recipients file path" << endl;
+    cin >> knownRecipientsFile;
+    if (knownRecipientsFile == "") {
+        new_outputfile<< "[knowrecipients] = knownrecipient.txt" << endl;
+    } else
+        new_outputfile << "[knowrecipients] = " << knownRecipientsFile << endl;
 }
+main(int argc, char *argv[]);
+    if(static_cast<string>(argv[1]) == "init"){
+        init();
+}
+    else(static_cast<string>(argv[2]) == "edit"){
+        edit()
+}
+
+
+
