@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 
         init_output.close();
     }
-    else if (static_cast<string>(argv[2]) == "edit")
+    else if (static_cast<string>(argv[1]) == "edit")
     {
 
         ifstream init_output;
