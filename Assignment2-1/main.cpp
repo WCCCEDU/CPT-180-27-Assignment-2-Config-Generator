@@ -11,62 +11,70 @@ using std::endl;
 
 int main(int argc, char *argv[]) {
 
+    //Asks the user what they want to do. create a config file or edit one
+    //leaving Menu blank will ask the question again
     string Menu = "";
     do {
-        cout << "Enter CREATE to enter data, or EDIT to edit existing data" << endl;
+        cout << "Enter 'Create' to enter data, or 'Edit' to edit existing data" << endl;
         getline(cin, Menu);
     } while (Menu == "");
 
-    if (Menu == "CREATE") {
-        std::string Username = "";
+    // Asks the user to fill in each category for the config file
+    if (Menu == "Create") {
+        string Username = "";
         do {
-            std::cout << "Enter your name(first and last)" << std::endl;
-            getline(std::cin, Username);
+            cout << "Enter your name(first and last)" << endl;
+            getline(cin, Username);
         } while (Username == "");
 
-        std::string Email = "";
+        string Email = "";
         do {
-            std::cout << "Enter your Email address" << std::endl;
-            getline(std::cin, Email);
+            cout << "Enter your Email address" << endl;
+            getline(cin, Email);
         } while (Email == "");
 
-        std::string Pass = "";
+        string Pass = "";
         do {
-            std::cout << "Enter your password" << std::endl;
-            getline(std::cin, Pass);
+            cout << "Enter your password" << endl;
+            getline(cin, Pass);
         } while (Pass == "");
 
-        std::string Timezone = "";
+        string Timezone = "";
         do {
-            std::cout << "Enter your timezone" << std::endl;
-            getline(std::cin, Timezone);
+            cout << "Enter your timezone" << endl;
+            getline(cin, Timezone);
         } while (Timezone == "");
 
+        //Asks for a file location ***WIP*** (right now just names file)
         string Location = "";
-        std::cout << "Enter file location, leave blank for default" << std::endl;
-        getline(std::cin, Location);
+        cout << "Enter file name (example 'document.txt') leave blank for default" << endl;
+        getline(cin, Location);
         if (Location == "") {
-            Location = "knownrecipients";
+            Location = "Config.txt";
         }
 
+        //Saves the data to a text file named by "location"
         std::ofstream textfile;
         textfile.open(Location);
 
-        textfile << "[Username]" << std::endl << Username << std::endl;
-        textfile << "[Email]" << std::endl << Email << std::endl;
-        textfile << "[Password]" << std::endl << Pass << std::endl;
-        textfile << "[Timezone]" << std::endl << Timezone << std::endl;
+        textfile << "[Username]" << endl << Username << endl;
+        textfile << "[Email]" << endl << Email << endl;
+        textfile << "[Password]" << endl << Pass << endl;
+        textfile << "[Timezone]" << endl << Timezone << endl;
         textfile.close();
 
-    }else if (Menu == "EDIT"){
+    //typing Edit in the menu allows you to change data
+    }else if (Menu == "Edit"){
 
+        //asks for file name same as above
         string Location = "";
-        std::cout << "Enter file location, leave blank for default" << std::endl;
-        getline(std::cin, Location);
+        cout << "Enter file name, leave blank for default" << endl;
+        getline(cin, Location);
         if (Location == "") {
-            Location = "knownrecipients";
+            Location = "Config.txt";
         }
 
+        //retrieves data currently saved in file and prints for user
         string Saved_Username = "";
         string Saved_Email = "";
         string Saved_Password = "";
@@ -98,65 +106,69 @@ int main(int argc, char *argv[]) {
         std::ofstream textfile;
         textfile.open(Location);
 
+        //asks user which variable to edit in the config file
         string Edit_Variable = "";
         do {
             cout << "Enter a variable to edit (Username, Email, Password, or Timezone" << endl;
-            getline(std::cin, Edit_Variable);
+            getline(cin, Edit_Variable);
         }while (Edit_Variable == "");
 
+        //prompts the user to enter a new variable and replaces the old one in the text file.
         if (Edit_Variable == "Username") {
-            std::string New_Username = "";
+            string New_Username = "";
             do {
-                std::cout << "Enter new Username" << std::endl;
-                getline(std::cin, New_Username);
+                cout << "Enter new Username" << endl;
+                getline(cin, New_Username);
             } while (New_Username == "");
-            textfile << "[Username]" << std::endl << New_Username << std::endl;
-            textfile << "[Email]" << std::endl << Saved_Email << std::endl;
-            textfile << "[Password]" << std::endl << Saved_Password << std::endl;
-            textfile << "[Timezone]" << std::endl << Saved_Timezone << std::endl;
+            textfile << "[Username]" << endl << New_Username << endl;
+            textfile << "[Email]" << endl << Saved_Email << endl;
+            textfile << "[Password]" << endl << Saved_Password << endl;
+            textfile << "[Timezone]" << endl << Saved_Timezone << endl;
             textfile.close();
             cout << "Edits Complete" << endl;
 
         }else if (Edit_Variable == "Email"){
-            std::string New_Email = "";
+            string New_Email = "";
             do {
-                std::cout << "Enter new Email" << std::endl;
-                getline(std::cin, New_Email);
+                cout << "Enter new Email" << endl;
+                getline(cin, New_Email);
             } while (New_Email == "");
-            textfile << "[Username]" << std::endl << Saved_Username << std::endl;
-            textfile << "[Email]" << std::endl << New_Email << std::endl;
-            textfile << "[Password]" << std::endl << Saved_Password << std::endl;
-            textfile << "[Timezone]" << std::endl << Saved_Timezone << std::endl;
+            textfile << "[Username]" << endl << Saved_Username << endl;
+            textfile << "[Email]" << endl << New_Email << endl;
+            textfile << "[Password]" << endl << Saved_Password << endl;
+            textfile << "[Timezone]" << endl << Saved_Timezone << endl;
             textfile.close();
             cout << "Edits Complete" << endl;
 
         }else if (Edit_Variable == "Password"){
-            std::string New_Password = "";
+            string New_Password = "";
             do {
-                std::cout << "Enter new Password" << std::endl;
-                getline(std::cin, New_Password);
+                cout << "Enter new Password" << endl;
+                getline(cin, New_Password);
             } while (New_Password == "");
-            textfile << "[Username]" << std::endl << Saved_Username << std::endl;
-            textfile << "[Email]" << std::endl << Saved_Email << std::endl;
-            textfile << "[Password]" << std::endl << New_Password << std::endl;
-            textfile << "[Timezone]" << std::endl << Saved_Timezone << std::endl;
+            textfile << "[Username]" << endl << Saved_Username << endl;
+            textfile << "[Email]" << endl << Saved_Email << endl;
+            textfile << "[Password]" << endl << New_Password << endl;
+            textfile << "[Timezone]" << endl << Saved_Timezone << endl;
             textfile.close();
             cout << "Edits Complete" << endl;
         }else if (Edit_Variable == "Timezone"){
-            std::string New_Timezone = "";
+            string New_Timezone = "";
             do {
-                std::cout << "Enter new Timezone" << std::endl;
-                getline(std::cin, New_Timezone);
+                cout << "Enter new Timezone" << endl;
+                getline(cin, New_Timezone);
             } while (New_Timezone == "");
-            textfile << "[Username]" << std::endl << Saved_Username << std::endl;
-            textfile << "[Email]" << std::endl << Saved_Email << std::endl;
-            textfile << "[Password]" << std::endl << Saved_Password << std::endl;
-            textfile << "[Timezone]" << std::endl << New_Timezone << std::endl;
+            textfile << "[Username]" << endl << Saved_Username << endl;
+            textfile << "[Email]" << endl << Saved_Email << endl;
+            textfile << "[Password]" << endl << Saved_Password << endl;
+            textfile << "[Timezone]" << endl << New_Timezone << endl;
             textfile.close();
             cout << "Edits Complete" << endl;
         }else{
             cout << "Unknown Input";
         }
+        //Reads and displays the new data ***WIP***
+        //(for some reason does not read changes and displays information from before the edit)
         while (!myfile.eof()) {
             for (int lineno = 0; getline(myfile, line) && lineno < 8; lineno++) {
                 if (lineno == 1) {
@@ -173,10 +185,10 @@ int main(int argc, char *argv[]) {
                 }
             }
         }
-        cout << "Saved Username:   " << Saved_Username << endl;
-        cout << "Saved Email:      " << Saved_Email << endl;
-        cout << "Saved Password:   " << Saved_Password << endl;
-        cout << "Saved Timezone:   " << Saved_Timezone << endl;
+        cout << "Saved Username:     " << Saved_Username << endl;
+        cout << "Saved Email:        " << Saved_Email << endl;
+        cout << "Saved Password:     " << Saved_Password << endl;
+        cout << "Saved Timezone:     " << Saved_Timezone << endl;
         myfile.close();
 
     }
