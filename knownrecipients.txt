@@ -1,8 +1,0 @@
-[Username]
-Josh Young
-[Email]
-joshuayoung101@gmail.com
-[Password]
-pass12345
-[Timezone]
-5:00

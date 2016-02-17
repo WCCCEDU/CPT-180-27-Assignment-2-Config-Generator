@@ -1,0 +1,8 @@
+[Username]
+Shloopin Boopin
+[Email]
+BoopinYa@yahoo.com
+[Password]
+CantSloopTheBoop
+[Timezone]
+26:00
