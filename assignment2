@@ -1,40 +1,76 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
 int main(int argc, char* argv[] ) {
 
     //write/open the initial txt file for configuration
-    std::ofstream file("config.txt");
+    std::ofstream file;
     file.open("config.txt");
 
-    if (argument1 == "init")
+    //the first argument
+    if (static_cast<string>(argv[1]) == "init") {
 
-    //receive user input
-       cout << "What is your full name? " << endl;
-       cin >> name;
-       cout << "What is your email address? " << endl;
-       cin >> email;
-       cout << "what is your password? " << endl;
-       cin >> password;
-       cout << "What timezone do you live in?" << endl;
-       cin >> timezone;
+        //string declaration
+        string name, email, password, time;
 
-    //write answers to config file. (Hopefully!)
-    file << name << endl;
-    file << email << endl;
-    file << password << endl;
-    file << timezone << endl;
+        //receive user input
+        cout << "What is your full name? " << endl;
+        getline(cin, name);
+        cout << "What is your email address? " << endl;
+        getline(cin, email);
+        cout << "what is your password? " << endl;
+        getline(cin, password);
+        cout << "What timezone do you live in?" << endl;
+        getline(cin, time);
 
-    //close file
-    file.close();
-    cout << "File closed.";
+        //write answers to config file.
+        file << name << endl;
+        file << email << endl;
+        file << password << endl;
+        file << time << endl;
 
-    if (argument2 == "edit")
+        //close file
+        file.close();
+        cout << "File closed.";
+    }
 
-    //prompt the user to edit the file
-    cout << "Please indicate the field to edit: " << endl;
-    cin >> variable; 
+    if (static_cast<string>(argv[1]) == "edit") {
 
+        ofstream file;
+        string name, email, password, time;
+
+        //open file for input/output
+        file.open("config.txt");
+
+        if (static_cast<string>(argv[2]) == "name") {
+            cout << "What would you like to change the field to? " << endl;
+            getline(cin, name);
+        }
+        if (static_cast<string>(argv[2]) == "email") {
+            cout << "What would you like to change the field to? " << endl;
+            getline(cin, name);
+        }
+        if (static_cast<string>(argv[2]) == "password") {
+            cout << "What would you like to change the field to? " << endl;
+            getline(cin, name);
+        }
+        if (static_cast<string>(argv[2]) == "time") {
+            cout << "What would you like to change the field to? " << endl;
+            getline(cin, name);
+        }
+
+        //write changes to config file.
+        file << name << endl;
+        file << email << endl;
+        file << password << endl;
+        file << time << endl;
+
+        //close the file
+        file.close();
+        cout << "File closed.";
+    }
     return 0;
+}
