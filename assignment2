@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
 
 int main(int argc, char* argv[] ) {
 
@@ -10,11 +12,12 @@ int main(int argc, char* argv[] ) {
     std::ofstream file;
     file.open("config.txt");
 
+    //string declaration
+    std::string name, email, password, time;
+
     //the first argument
     if (static_cast<string>(argv[1]) == "init") {
 
-        //string declaration
-        string name, email, password, time;
 
         //receive user input
         cout << "What is your full name? " << endl;
@@ -37,10 +40,14 @@ int main(int argc, char* argv[] ) {
         cout << "File closed.";
     }
 
+    else {
+        cout << "Please enter a field" << endl;
+    }
+
     if (static_cast<string>(argv[1]) == "edit") {
 
-        ofstream file;
-        string name, email, password, time;
+        std::ofstream file;
+        std::string name, email, password, time;
 
         //open file for input/output
         file.open("config.txt");
