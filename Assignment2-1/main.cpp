@@ -169,6 +169,7 @@ int main(int argc, char *argv[]) {
         }
         //Reads and displays the new data ***WIP***
         //(for some reason does not read changes and displays information from before the edit)
+        myfile.open (Location);
         while (!myfile.eof()) {
             for (int lineno = 0; getline(myfile, line) && lineno < 8; lineno++) {
                 if (lineno == 1) {
