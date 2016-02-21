@@ -8,73 +8,105 @@ using std::endl;
 using std::string;
 const string CONFIG_FILE = "C:/Users/Brandon/Documents/config.txt";
 
+
+void Edit();
+
+void Init() ;
+
 int main(int argc, char *argv[]) {
-
-
+    cout << argc;
+    if (argc != 2) {
+        cout << "opening text file" << CONFIG_FILE << endl;
+    }
     cout << "enter 1 for init or 2 for edit: " << endl;
     string argument;
     getline(cin, argument);
     if (argument == "1") {
         (static_cast<string>(argv[1]) == "init");
-        cout << "init" << true << CONFIG_FILE;
+        cout << "init" << Init << true << endl;
     } else argument = "2";
     (static_cast <string>(argv[2]) == "edit");
-    cout << "edit" << true;
+    cout << "edit" << Edit <<  true << endl;
 
+    class Area;
+    {
+        {
+            if (argument == "1") {
+                Init();
+            }
+            else if (argument == "2") {
+                Edit();
+            }
+        }
+
+
+    }
+
+}
+
+
+
+
+void Init() {
     std::ofstream outfile;
     outfile.open("config.txt");
 
-    //init user enter first name
-    string first_name = "";
-    do {
-        cout << "enter your first name:" <<
-        endl;
-        getline(cin, first_name);
-    } while (first_name == "");
+//init user enter first name
 
-//init user enter last name
-    string last_name;
+    string first_name = "";
+
     do {
-        cout << "enter your last name" <<
-        endl;
+        cout << "enter your first name:" << endl;
+        getline(cin, first_name);
+
+    } while (first_name == "");
+    //init user enter last name
+
+    string last_name;
+
+    do {
+        cout << "enter your last name" << endl;
         getline(cin, last_name);
+
     } while (last_name == "");
 
-//init user enter email address
+    //init user enter email address
     string email_address = "";
     do {
-        cout << "enter your email address" <<
-        endl;
-        std::getline(cin, email_address
-        );
-    } while (email_address == "");
+        cout << "enter your email address" << endl;
+        std::getline(cin, email_address);
 
-//init user enter cypher
+    } while (email_address == "");
+    //init user enter cypher
+
     string cypher_passcode;
     do {
-        cout << "enter your cypher: " <<
-        endl;
-        std::getline(cin, cypher_passcode
-        );
+        cout << "enter your cypher: " << endl;
+        std::getline(cin, cypher_passcode);
+
     } while (cypher_passcode == "");
 
-//init user enter time offset
+    //init user enter time offset
     string time_offset = "";
     do {
         cout << "enter your time offset: " << endl;
         std::getline(cin, time_offset);
+
     } while (time_offset == "");
 
-//init user enter known recipients file
+    //init user enter known recipients file
     string known_recipients_file = "";
     do {
         cout << "enter known recipients file: " << endl;
-        getline(cin, known_recipients_file
-        );
+        getline(cin, known_recipients_file);
+
     } while (known_recipients_file == "");
     cout << "known_recipients_file= knownrecipients.txt" << endl;
+}
 
-    outfile.close();
+
+
+void Edit() {
 
 
     std::ifstream infile;
@@ -103,7 +135,7 @@ int main(int argc, char *argv[]) {
     string edit_time_offset;
     string edit_known_recipients_file;
 
-    cout << "enter new first name, last name, email address, cypher passcode, time offset, known file for the file: " << endl;
+    cout << "enter new 'first name', 'last name', 'email address', 'cypher passcode', 'time offset',or 'known file' to edit the file: " << endl;
     string choose_field;
     getline(cin, choose_field);
     if (choose_field == "first name") {
@@ -132,7 +164,7 @@ int main(int argc, char *argv[]) {
         getline(cin, edit_known_recipients_file);
     }
 
-
+    std::ofstream outfile;
     outfile.open("config.txt");
 
     outfile << edit_first_name << endl;
@@ -145,8 +177,8 @@ int main(int argc, char *argv[]) {
     outfile.close();
 
     infile.close();
-}
 
+}
 
 
 
