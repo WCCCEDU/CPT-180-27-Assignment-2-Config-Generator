@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
        std::cout << "Prepping the creation of the Config File.\n";
        create();
    }
-   else if (static_cast<std::string>(argv[2]) == "reconfigure")
+   else if (static_cast<std::string>(argv[1]) == "reconfigure")
    {
        std::cout << "Starting the Reconfiguration process.\n";
        reconfigure();
