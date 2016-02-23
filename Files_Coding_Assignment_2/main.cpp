@@ -9,45 +9,22 @@ using std::string;
 const string CONFIG_FILE = "C:/Users/Brandon/Documents/config.txt";
 
 
-void Edit();
-
-void Init() ;
-
 int main(int argc, char *argv[]) {
     cout << argc;
-    if (argc != 2) {
-        cout << "opening text file" << CONFIG_FILE << endl;
-    }
-    cout << "enter 1 for init or 2 for edit: " << endl;
-    string argument;
-    getline(cin, argument);
-    if (argument == "1") {
-        (static_cast<string>(argv[1]) == "init");
-        cout << "init" << Init << true << endl;
-    } else argument = "2";
-    (static_cast <string>(argv[2]) == "edit");
-    cout << "edit" << Edit <<  true << endl;
 
-    class Area;
-    {
-        {
-            if (argument == "1") {
-                Init();
-            }
-            else if (argument == "2") {
-                Edit();
-            }
-        }
-
-
+    if (static_cast<string>(argv[0]) == "CONFIG_FILE"){
+        cout << "opening config file" << true << CONFIG_FILE <<  endl;
     }
 
-}
+    if (static_cast<string>(argv[1]) == "init"){
+        cout << "init" << true << endl;
+    }
+
+    if (static_cast <string>(argv[2]) == "edit") {
+        cout << "edit" << true << endl;
+    }
 
 
-
-
-void Init() {
     std::ofstream outfile;
     outfile.open("config.txt");
 
@@ -102,12 +79,8 @@ void Init() {
 
     } while (known_recipients_file == "");
     cout << "known_recipients_file= knownrecipients.txt" << endl;
-}
 
-
-
-void Edit() {
-
+outfile.close();
 
     std::ifstream infile;
     infile.open("config.txt");
@@ -138,33 +111,38 @@ void Edit() {
     cout << "enter new 'first name', 'last name', 'email address', 'cypher passcode', 'time offset',or 'known file' to edit the file: " << endl;
     string choose_field;
     getline(cin, choose_field);
-    if (choose_field == "first name") {
-        cout << "you have decided to edit the first name" << endl;
-        cout << "enter first name: " << edit_first_name << endl;
-        getline(cin, edit_first_name);
-    } else if (choose_field == "last name") {
-        cout << "you have decided to edit the last name" << endl;
-        cout << "enter last name: " << edit_last_name << endl;
-        getline(cin, edit_last_name);
-    } else if (choose_field == "email address") {
-        cout << "you have decided to edit the email address" << endl;
-        cout << "enter email address: " << edit_email_address << endl;
-        getline(cin, edit_email_address);
-    } else if (choose_field == "cypher passcode") {
-        cout << "you have decided to edit the cypher passcode" << endl;
-        cout << "enter cypher passcode: " << edit_cypher_passcode << endl;
-        getline(cin, edit_cypher_passcode);
-    } else if (choose_field == "time offset") {
-        cout << "you have decided to edit the time offset" << endl;
-        cout << "enter time offset: " << edit_time_offset << endl;
-        getline(cin, edit_time_offset);
-    } else if (choose_field == "known file") {
-        cout << "you have decided to edit the known recipients file" << endl;
-        cout << "enter new file name: ";
-        getline(cin, edit_known_recipients_file);
-    }
+    do {
+        if (choose_field == "") {
+            cout << "Please enter a field: " << endl;
+            std::getline(cin, choose_field);}
+    }while (choose_field == "");
 
-    std::ofstream outfile;
+    if (choose_field == "first name") {
+            cout << "you have decided to edit the first name" << endl;
+            cout << "enter first name: " << edit_first_name << endl;
+            getline(cin, edit_first_name);
+        } else if (choose_field == "last name") {
+            cout << "you have decided to edit the last name" << endl;
+            cout << "enter last name: " << edit_last_name << endl;
+            getline(cin, edit_last_name);
+        } else if (choose_field == "email address") {
+            cout << "you have decided to edit the email address" << endl;
+            cout << "enter email address: " << edit_email_address << endl;
+            getline(cin, edit_email_address);
+        } else if (choose_field == "cypher passcode") {
+            cout << "you have decided to edit the cypher passcode" << endl;
+            cout << "enter cypher passcode: " << edit_cypher_passcode << endl;
+            getline(cin, edit_cypher_passcode);
+        } else if (choose_field == "time offset") {
+            cout << "you have decided to edit the time offset" << endl;
+            cout << "enter time offset: " << edit_time_offset << endl;
+            getline(cin, edit_time_offset);
+        } else if (choose_field == "known file") {
+            cout << "you have decided to edit the known recipients file" << endl;
+            cout << "enter new file name: ";
+            getline(cin, edit_known_recipients_file);
+        }
+
     outfile.open("config.txt");
 
     outfile << edit_first_name << endl;
