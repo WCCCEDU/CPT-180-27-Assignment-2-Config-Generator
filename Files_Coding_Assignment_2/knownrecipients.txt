@@ -1,0 +1,6 @@
+[firstname] = Brandon
+[lastname] = Collins
+[email] = bcseahawk@gmail.com
+[cypher] = cityofchampions
+[timeoffset] = 5
+[knownfile] = knownrecipients.txt
