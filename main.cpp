@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
             }
 
 
-            config_file << SETTING_NAME[x] << "=" << temp_value << endl;
+            config_file << "[" << SETTING_NAME[x] << "]" << "=" << temp_value << endl;
         }
 
 
